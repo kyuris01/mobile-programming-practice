@@ -20,7 +20,7 @@ import com.example.eweek04a.model.TodoItemFactory
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-fun addTodoList(textFieldState :String, todoList: MutableList<Item>) {
+fun addTodoList(textFieldState: String, todoList: MutableList<Item>) {
     if (textFieldState.isNullOrBlank()) return
     val currentTime = LocalDateTime.now()
         .format(DateTimeFormatter.ofPattern("MM-dd HH:mm"))
@@ -28,19 +28,22 @@ fun addTodoList(textFieldState :String, todoList: MutableList<Item>) {
 }
 
 @Composable
-fun TodoItemInput(todoList:MutableList<Item>, modifier: Modifier = Modifier) {
+fun TodoItemInput(todoList: MutableList<Item>, modifier: Modifier = Modifier) {
 
-    var textFieldState by remember {mutableStateOf("")}
+    var textFieldState by remember { mutableStateOf("") }
 
-    Row (verticalAlignment = Alignment.CenterVertically){
+    Row(verticalAlignment = Alignment.CenterVertically) {
         TextField(
             modifier = Modifier.weight(1f),
             value = textFieldState,
-            onValueChange = {text:String -> textFieldState = text},
+            onValueChange = { text: String -> textFieldState = text },
             placeholder = { Text("할 일을 입력하세요.") }
         )
         Spacer(modifier = Modifier.width(10.dp))
-        Button(onClick= { addTodoList(textFieldState, todoList) }) {
+        Button(onClick = {
+            addTodoList(textFieldState, todoList)
+            textFieldState = ""
+        }) {
             Text("추가")
         }
     }

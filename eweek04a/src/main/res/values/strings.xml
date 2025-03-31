@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">eweek04a</string>
+    <string name="todoList_title">To-Do List</string>
+    <string name="developer_info">202214209 안태규</string>
+</resources>
